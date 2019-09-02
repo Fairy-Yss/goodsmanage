@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>GOODS-MANAGE</title>
   <link href="./index.css" rel="stylesheet" type="text/css">
-  <script src="./lib/jquery.min.js"></script>
+  <script src="./lib/jquery/jquery.min.js"></script>
 </head>
 <body>
   <div class="page-box" id="syspage">
@@ -25,12 +25,15 @@
       <!--内容区域右边iframe显示区域-->
       <div class="right-content-box">
         <!--通过动态改变iframe的src属性，设置iframe的显示内容-->
-        <iframe src="./view/home/html/home.html" id="sub_page_container"></iframe>
+        <iframe src="" id="sub_page_container"></iframe>
       </div>
     </div>
 
     <div class="footer-box"></div>
   </div>
+  <!--引入路由配置，路由工具文件：重要的一点是路由配置必须在路由工具之前引入，因为路由工具中读取了路由配置-->
+  <script src="./routerConfig.js"></script>
+  <script src="./lib/util/hashRouter.js"></script>
   <script src="./index.js"></script>
 </body>
 </html>
