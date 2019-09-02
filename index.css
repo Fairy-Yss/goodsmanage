@@ -1,0 +1,38 @@
+html,body{
+  padding: 0;
+  margin: 0;
+}
+.page-box {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-box {
+  background-color: teal;
+  height: 45px;
+  width: 100%;
+}
+
+.body-box {
+  display: flex;
+  flex-grow: 1;
+}
+
+.left-nav-box {
+  width:180px;
+  border: 1px solid gray;
+}
+
+.right-content-box {
+  flex-grow: 1;
+  border: 1px solid yellow;
+}
+
+#sub_page_container {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}

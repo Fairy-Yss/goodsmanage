@@ -1,0 +1,19 @@
+html,body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+.page-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.subitem {
+  width:80px;
+  height:80px;
+  border-radius: 40px;
+  background-color: cadetblue;
+}

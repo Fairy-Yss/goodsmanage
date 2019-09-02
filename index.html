@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GOODS-MANAGE</title>
+  <link href="./index.css" rel="stylesheet" type="text/css">
+  <script src="./lib/jquery.min.js"></script>
+</head>
+<body>
+  <div class="page-box" id="syspage">
+    <!--头部导航栏-->
+    <div class="header-box"></div>
+    <!--中间内容区域-->
+    <div class="body-box">
+      <!--内容区域左边导航栏-->
+      <div class="left-nav-box">
+        <ul>
+          <li><a href="javascript:void(0)" onclick="gotoPage('page_1')">页面一</a></li>
+          <li><a href="javascript:void(0)" onclick="gotoPage('page_2')">页面二</a></li>
+          <li><a href="javascript:void(0)" onclick="gotoPage('page_3')">页面三</a></li>
+          <li><a href="javascript:void(0)" onclick="gotoPage('page_4')">页面四</a></li>
+        </ul>
+      </div>
+      <!--内容区域右边iframe显示区域-->
+      <div class="right-content-box">
+        <!--通过动态改变iframe的src属性，设置iframe的显示内容-->
+        <iframe src="./view/home/html/home.html" id="sub_page_container"></iframe>
+      </div>
+    </div>
+
+    <div class="footer-box"></div>
+  </div>
+  <script src="./index.js"></script>
+</body>
+</html>
