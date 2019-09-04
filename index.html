@@ -4,43 +4,80 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>GOODS-MANAGE</title>
-  <link href="./index.css" rel="stylesheet" type="text/css">
+  <!--引入layui 外部样式库，不用自己去写太多的布局样式，直接使用就好，将重心放到业务实现上面-->
+  <link rel="stylesheet" href="./lib/layui/css/layui.css">
   <script src="./lib/jquery/jquery.min.js"></script>
 </head>
-<body>
-  <div class="page-box" id="syspage">
-    <!--头部导航栏-->
-    <div class="header-box">
-          <ul class="top-ul">
-            <li style="background-color:darkgray">首页</li>
-            <li>书籍</li>
-            <li>订单</li>
-            <li>用户</li>
-            <li>登录</li>
-            <li>注册</li>
-            <li>当前用户</li>
-          </ul>
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+      <div class="layui-logo">GOODS-MANAGE</div>
+      <!-- 头部区域（可配合layui已有的水平导航） -->
+      <ul class="layui-nav layui-layout-left">
+        <li class="layui-nav-item"><a href="javascript:void(0)" onclick="gotoPage('page_1')">HOME</a></li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">其它模块</a>
+          <dl class="layui-nav-child">
+            <dd><a href="">邮件管理</a></dd>
+            <dd><a href="">消息管理</a></dd>
+            <dd><a href="">授权管理</a></dd>
+          </dl>
+        </li>
+      </ul>
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+            <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+            YSS
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="">基本资料</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">退了</a></li>
+      </ul>
     </div>
-    <!--中间内容区域-->
-    <div class="body-box">
-      <!--内容区域左边导航栏-->
-      <div class="left-nav-box">
-        <ul>
-          <li><a href="javascript:void(0)" onclick="gotoPage('page_1')">页面一</a></li>
-          <li><a href="javascript:void(0)" onclick="gotoPage('page_2')">页面二</a></li>
-          <li><a href="javascript:void(0)" onclick="gotoPage('page_3')">页面三</a></li>
-          <li><a href="javascript:void(0)" onclick="gotoPage('page_4')">页面四</a></li>
+        
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+          <li class="layui-nav-item">
+            <a class="" href="javascript:;">商品管理</a>
+            <dl class="layui-nav-child">
+              <dd><a href="javascript:;" onclick="gotoPage('page_1')">商品列表</a></dd>
+              <dd><a href="javascript:;" onclick="gotoPage('page_2')">添加商品</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+              <a class="" href="javascript:;">订单管理</a>
+              <dl class="layui-nav-child">
+                <dd><a href="javascript:;" onclick="gotoPage('page_1')">订单列表</a></dd>
+              </dl>
+            </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">用户管理</a>
+            <dl class="layui-nav-child">
+              <dd><a href="javascript:;" onclick="gotoPage('page_1')">用户列表</a></dd>
+              <dd><a href="javascript:;" onclick="gotoPage('page_2')">用户权限</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item"><a href="">收入统计报表</a></li>
         </ul>
       </div>
-      <!--内容区域右边iframe显示区域-->
-      <div class="right-content-box">
-        <!--通过动态改变iframe的src属性，设置iframe的显示内容-->
-        <iframe src="" id="sub_page_container"></iframe>
-      </div>
     </div>
-
-    <div class="footer-box"></div>
+    <div class="layui-body">
+      <!--通过动态改变iframe的src属性，设置iframe的显示内容-->
+      <iframe src="" id="sub_page_container" style="border:none;padding: 0; margin: 0;width: 100%;height: 100%;"></iframe>
+    </div>
+    
+    <div class="layui-footer">
+      <!-- 底部固定区域 -->
+      © goodsmanage.com - yss
+    </div>
   </div>
+  <!--引入-->
+  <script src="./lib/layui/layui.all.js"></script>
   <!--引入路由配置，路由工具文件：重要的一点是路由配置必须在路由工具之前引入，因为路由工具中读取了路由配置-->
   <script src="./routerConfig.js"></script>
   <script src="./lib/util/hashRouter.js"></script>
