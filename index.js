@@ -15,5 +15,5 @@
 
 // 下面的routerutil已经注册到了全局对象 window中，所以可以直接使用了，跳转路由直接使用该方法
 function gotoPage(page) {
-  routerutil.route(page);
+  routerutil.route({path: page,params:{}});
 }
