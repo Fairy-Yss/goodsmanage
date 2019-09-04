@@ -1,3 +1,4 @@
+
 // 下面的代码是一段立即执行函数，用来动态计算高度，让页面适应不同的电脑的屏幕【使用了jquery方法，jquery已经在index.html中引入了】
 (function($) {
   var resizeFn = function () {
@@ -11,6 +12,18 @@
   }
   window.addEventListener('load',resizeFn);
   window.addEventListener('resize',resizeFn);
+  //top菜单事件
+  $(".top-ul li").mouseover(function(){
+    $(this).css("color","yellow");
+  });
+  $(".top-ul li").mouseout(function(){
+    $(this).css("color","aliceblue");
+  });
+  $(".top-ul li").click(function(){
+    $(this).css("background-color","darkgray"),
+    $(this).siblings().css("background-color","slategray")
+  });
+ 
 })($);
 
 // 下面的routerutil已经注册到了全局对象 window中，所以可以直接使用了，跳转路由直接使用该方法
