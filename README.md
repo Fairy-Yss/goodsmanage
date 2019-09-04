@@ -26,7 +26,7 @@ iframe
 ├── index.html                     // 管理系统首页【入口文件】
 ├── index.css                      // 管理系统首页层叠样式表
 ├── index.js                       // 管理系统首页js脚本文件
-├── routerConfig.js                // 用于配置项目的路由的配置文件
+├── routerConfig.js                // 用于配置项目的路由的配置文件 
 ├── README.md                      // 项目简介与说明
 ```
 ### 项目安装与启动

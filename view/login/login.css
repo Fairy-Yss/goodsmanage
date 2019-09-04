@@ -9,11 +9,12 @@
     margin: 150px auto;
     text-align: center;
     position: relative;
+    background-color: cyan;
 }
 .main p{
     position: absolute;
     top: 70px;
-    left: 118px;
+    left: 148px;
 }
 .main .inputs{
     margin-top:90px; 
@@ -21,8 +22,19 @@
 .main .inputs div{
     margin-top:20px; 
 }
-.main button{
-    margin-top:20px; 
+.main .inputs .password{
+    margin-left:15px; 
+}
+.main .login-bt{
     width: 100px;
     background-color: aqua;
+    margin-top: 20px;
+    margin-left:60px; 
+}
+.main .res-bt{
+    width: 100px;
+    background-color: aqua;
+    display: block;
+    margin-left: 180px;
+    margin-top: 10px;
 }

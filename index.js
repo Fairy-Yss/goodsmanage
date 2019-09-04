@@ -14,7 +14,12 @@
   window.addEventListener('resize',resizeFn);
   //top菜单事件
   $(".top-ul li").mouseover(function(){
-    $(this).css("color","yellow");
+    $(this).css(
+      {"color":"yellow",
+       "cursor":"pointer"
+      }
+  );
+    
   });
   $(".top-ul li").mouseout(function(){
     $(this).css("color","aliceblue");
@@ -28,5 +33,5 @@
 
 // 下面的routerutil已经注册到了全局对象 window中，所以可以直接使用了，跳转路由直接使用该方法
 function gotoPage(page) {
-  routerutil.route({path: page,params:{}});
+  routerutil.route(page);
 }
