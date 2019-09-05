@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GOODS-MANAGE</title>
+    <!--引入layui 外部样式库，不用自己去写太多的布局样式，直接使用就好，将重心放到业务实现上面-->
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+    <link href="./re2.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin main-size">
+        <div class="layui-row header-size">
+            <div class="layui-col-xs6">
+                <div class="grid-demo grid-demo-bg1"><img src="../image/bookLogo.jpg" class="image-size" /></div>
+            </div>
+            <div class="layui-col-xs6">
+                <div class="grid-demo"></div>
+            </div>
+        </div>
+        <div class="layui-tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this">新用户注册</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <form class="layui-form form-size" action="" >
+                        <div class="layui-form-item form-item">
+                            <label class="layui-form-label">用户名</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" 
+                                class="layui-input input-size">
+                            </div>
+                        </div>
+                        <div class="layui-form-item form-item">
+                            <label class="layui-form-label">请输入密码</label>
+                            <div class="layui-input-block">
+                                <input type="password" name="password" placeholder="请输入密码" autocomplete="off"
+                                class="layui-input input-size">
+                            </div>
+                        </div>
+                        <div class="layui-form-item form-item">
+                            <label class="layui-form-label">确认密码</label>
+                            <div class="layui-input-block">
+                                <input type="password" name="password" placeholder="请再次确认密码" autocomplete="off"
+                                class="layui-input input-size">
+                            </div>
+                        </div>
+                        <div class="layui-form-item form-item">
+                            <label class="layui-form-label">验证码</label>
+                            <div class="layui-input-block">
+                                <input type="password" name="password" placeholder="请输入密码" autocomplete="off"
+                                class="layui-input" style="width: 210px">
+                            </div>
+                        </div>
+                        <div class="layui-form-item form-item" pane="">
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="like1[write]" lay-skin="primary" title="" checked="">
+                                <span style="position:relative;top:10px;">我已同意并阅读
+                                    <a href="#" style="color: rgb(0, 91, 209)">《Goods交易条款》</a>
+                                    和<a href="#" style="color: rgb(0, 91, 209)">《Goods社区条款》</a>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn btn-size" lay-submit="" lay-filter="demo1">立即注册</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="layui-body">
+            <!--通过动态改变iframe的src属性，设置iframe的显示内容-->
+            <iframe src="" id="sub_page_container"
+                style="border:none;padding: 0; margin: 0;width: 100%;height: 100%;"></iframe>
+        </div>
+    </div>
+    <!--引入jqeury文件 因为layui.js依赖jquery因此需要在它之前引入，引入了之后，本页面的所有js文件也可以使用jquery语法了-->
+    <script src="../../lib/jquery/jquery.min.js"></script>
+    <!--引入layui js文件-->
+    <script src="../../lib/layui/layui.all.js"></script>
+
+    <!--引入路由配置，路由工具文件：重要的一点是路由配置必须在路由工具之前引入，因为路由工具中读取了路由配置-->
+
+</body>
+
+</html>

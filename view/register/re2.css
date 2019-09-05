@@ -1,0 +1,32 @@
+.main-size{
+    width: 60%;
+    margin: 0 auto;
+}
+.header-size{
+    border-bottom: 3px solid orangered;
+    height: 100px;;
+}
+.form-size{
+    margin-top: 50px;
+}
+.input-size{
+    width: 400px;
+}
+.form-item{
+    margin-left: 100px;
+    margin-top: 26px;
+}
+.tab-show{
+    border: 1px solid red;
+}
+.image-size{
+    width: 150px;
+    height: 90px;
+}
+.btn-size{
+    border-radius: 25px;
+    background-color: orangered;
+    width: 160px;
+    height: 40px;
+    margin-left: 110px;
+}

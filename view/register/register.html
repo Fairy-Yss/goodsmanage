@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>注册页面</title>
+        <link href="./register.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="main">
+            <img/>
+            <p class="welcome">欢迎注册书籍管理系统</p>
+            <div class="username">用户名：<input type="text" placeholder="请输入用户名" name=""></div>
+            <p class="remind"></p>
+            <div class="password">密码：<input type="text" placeholder="请输入密码" name=""></div>
+            <p class="remind"></p>
+            <div class="confirm">确认密码：<input type="text" placeholder="请再一次确认密码" name=""></div>
+            <p class="remind"></p>
+            <button>注册</button>
+        </div>
+    </body>
+    <script src="../../lib/jquery/jquery.min.js"></script>
+    <script src="./login.js"></script>
+    <script>
+        (function(){
+            var remind = $(".remind");
+            //验证用户名
+            $(".username input").blur(function(){
+            if($(this).length!=0){
+                var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
+                var result = uPattern.test($(this).val());
+                if(!result){
+                    remind.eq(0).text("*请输入4到16位由字母，数字，下划线，减号组成的用户名")
+                }else{
+                    remind.eq(0).text("")
+                }
+            }
+            })
+            //验证密码
+            $(".password input").blur(function(){
+                remind.eq(2).text("请再次输入密码");
+            if($(this).length!=0){
+                var uPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).*$/;
+                var result = uPattern.test($(this).val());
+                if(!result){
+                    remind.eq(1).text("*最少6位，由至少1个大写字母，1个小写字母，1个数字组成")
+                }else{
+                    remind.eq(1).text("")
+                }
+            }
+            })
+             //验证两次输入密码是否一致
+             $(".confirm input").blur(function(){
+                remind.eq(2).text("请再次输入密码");
+            if($(this).length!=0){
+                if(remind.eq(1).val()!=remind.eq(2).val()){
+                    remind.eq(2).text("*两次输入密码不一致，请重新输入").css("color","red");
+                    remind.eq(2).text("");
+                    remind.eq(2).focus();
+                }else{
+                    remind.eq(2).text("")
+                }
+            }
+            })
+        })();
+       
+    </script>
+</html>
