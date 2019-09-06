@@ -26,66 +26,227 @@
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <form class="layui-form form-size" action="" >
+                    <form class="layui-form form-size" action="">
                         <div class="layui-form-item form-item">
                             <label class="layui-form-label">用户名</label>
                             <div class="layui-input-block">
-                                <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" 
-                                class="layui-input input-size">
+                                <input type="text" name="" placeholder="请输入用户名" class="layui-input input-size"
+                                    id="username"><img
+                                    style="width:19px; height:16px ;margin-top:10px;display: none;" />
+                                <p class="remind"></p>
                             </div>
                         </div>
                         <div class="layui-form-item form-item">
                             <label class="layui-form-label">请输入密码</label>
                             <div class="layui-input-block">
-                                <input type="password" name="password" placeholder="请输入密码" autocomplete="off"
-                                class="layui-input input-size">
+                                <input type="password" name="" placeholder="请输入密码" autocomplete="off"
+                                    class="layui-input input-size" id="password"><img
+                                    style="width:19px; height:16px ;margin-top:10px;display: none;" />
+                                <p class="remind"></p>
                             </div>
                         </div>
                         <div class="layui-form-item form-item">
                             <label class="layui-form-label">确认密码</label>
                             <div class="layui-input-block">
-                                <input type="password" name="password" placeholder="请再次确认密码" autocomplete="off"
-                                class="layui-input input-size">
+                                <input type="password" name="" placeholder="请再次确认密码" autocomplete="off"
+                                    class="layui-input input-size" id="confirm"><img
+                                    style="width:19px; height:16px ;margin-top:10px;display: none;" />
+                                <p class="remind"></p>
                             </div>
                         </div>
                         <div class="layui-form-item form-item">
                             <label class="layui-form-label">验证码</label>
                             <div class="layui-input-block">
-                                <input type="password" name="password" placeholder="请输入密码" autocomplete="off"
-                                class="layui-input" style="width: 210px">
+                                <input type="password" name="password" placeholder="请输入验证码" autocomplete="off"
+                                    class="layui-input" style="width: 210px" id="identy">
+                                <div id="verificationCode" class="verificationCode">
+                                    <canvas width="100" height="40" id="verifyCanvas"></canvas>
+                                    <img id="code_img">
+                                </div>
                             </div>
                         </div>
                         <div class="layui-form-item form-item" pane="">
                             <div class="layui-input-block">
-                                <input type="checkbox" name="like1[write]" lay-skin="primary" title="" checked="">
+                                <input id="check-btn" type="checkbox" lay-skin="primary" title="" checked="">
                                 <span style="position:relative;top:10px;">我已同意并阅读
                                     <a href="#" style="color: rgb(0, 91, 209)">《Goods交易条款》</a>
                                     和<a href="#" style="color: rgb(0, 91, 209)">《Goods社区条款》</a>
                                 </span>
+                                <p class="remind"></p>
                             </div>
                         </div>
-
                         <div class="layui-form-item form-item">
                             <div class="layui-input-block">
-                                <button class="layui-btn btn-size" lay-submit="" lay-filter="demo1">立即注册</button>
+                                <button id="sub-btn" class="layui-btn btn-size" lay-submit=""
+                                    lay-filter="demo1">立即注册</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="layui-body">
-            <!--通过动态改变iframe的src属性，设置iframe的显示内容-->
-            <iframe src="" id="sub_page_container"
-                style="border:none;padding: 0; margin: 0;width: 100%;height: 100%;"></iframe>
-        </div>
     </div>
     <!--引入jqeury文件 因为layui.js依赖jquery因此需要在它之前引入，引入了之后，本页面的所有js文件也可以使用jquery语法了-->
     <script src="../../lib/jquery/jquery.min.js"></script>
     <!--引入layui js文件-->
     <script src="../../lib/layui/layui.all.js"></script>
+    <script>
+        (function () {
+            var remind = $(".remind");
+            //验证用户名
+            $("#username").keyup(function () {
+                var idName = $(this);
+                nameIdenty(idName, remind);
+            })
+            //验证密码
+            $("#password").keyup(function () {
+                var pswName = $(this);
+                pswIdenty(pswName, remind);
+            })
+            //验证两次输入密码是否一致
+            $("#confirm").keyup(function () {
+                var confirmName = $(this);
+                confirmIdenty(confirmName, remind);
+            })
+            //验证条款
+            $("#check-btn").click(function () {
+                alert(1);
+            }
+            )
+            //用户数据提交
+            $("#sub-btn").click(function () {
+                var idName = $("#username");
+                var pswName = $("#password");
+                var confirmName = $("#confirm");
+                nameIdenty(idName, remind);
+                pswIdenty(pswName, remind);
+                confirmIdenty(confirmName, remind);
+            }
+            )
+        })();
 
-    <!--引入路由配置，路由工具文件：重要的一点是路由配置必须在路由工具之前引入，因为路由工具中读取了路由配置-->
+        function nameIdenty(idName, remind) {
+            if (idName.val().length != 0) {
+                var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
+                var result = uPattern.test(idName.val());
+                idName.siblings(0).css({
+                    "display": "inline-block"
+                });
+                if (!result) {
+                    idName.siblings(0).attr("src", "../image/false.jpg");
+                    remind.eq(0).text("*请输入4到16位由字母，数字，下划线，减号组成的用户名")
+                } else {
+                    idName.siblings(0).attr("src", "../image/true.jpg");
+                    remind.eq(0).text("");
+                }
+            }
+        }
+        function pswIdenty(pswName, remind) {
+            if (pswName.val().length != 0) {
+                var uPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).*$/;
+                var result = uPattern.test(pswName.val());
+                pswName.siblings(1).css({
+                    "display": "inline-block"
+                });
+                if (!result) {
+                    pswName.siblings(1).attr("src", "../image/false.jpg");
+                    remind.eq(1).text("*最少6位，由至少1个大写字母，1个小写字母，1个数字组成")
+                } else {
+                    pswName.siblings(1).attr("src", "../image/true.jpg");
+                    remind.eq(1).text("")
+                }
+            }
+        }
+        function confirmIdenty(confirmName, remind) {
+            if (confirmName.val().length != 0) {
+                confirmName.siblings(2).css({
+                    "display": "inline-block"
+                });
+                if (confirmName.val() != $("#password").val()) {
+                    confirmName.siblings(2).attr("src", "../image/false.jpg");
+                    remind.eq(2).text("*两次输入密码不一致，请重新输入").css("color", "red");
+                } else {
+                    confirmName.siblings(2).attr("src", "../image/true.jpg");
+                    remind.eq(2).text("")
+                }
+            }
+        }
+        //验证码
+        var nums = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+        ];
+        var str = '';
+        var verVal = drawCode();
+        // 绘制验证码
+        function drawCode(str) {
+            var canvas = document.getElementById("verifyCanvas"); //获取HTML端画布
+            var context = canvas.getContext("2d"); //获取画布2D上下文
+            context.fillStyle = "cornflowerblue"; //画布填充色
+            context.fillRect(0, 0, canvas.width, canvas.height); //清空画布
+            context.fillStyle = "white"; //设置字体颜色
+            context.font = "25px Arial"; //设置字体
+            var rand = new Array();
+            var x = new Array();
+            var y = new Array();
+            for (var i = 0; i < 4; i++) {
+                rand.push(rand[i]);
+                rand[i] = nums[Math.floor(Math.random() * nums.length)]
+                x[i] = i * 20 + 10;
+                y[i] = Math.random() * 20 + 20;
+                context.fillText(rand[i], x[i], y[i]);
+            }
+            str = rand.join('').toUpperCase();
+            //画3条随机线
+            for (var i = 0; i < 3; i++) {
+                drawline(canvas, context);
+            }
+
+            // 画30个随机点
+            for (var i = 0; i < 30; i++) {
+                drawDot(canvas, context);
+            }
+            convertCanvasToImage(canvas);
+            return str;
+        }
+
+        // 随机线
+        function drawline(canvas, context) {
+            context.moveTo(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height)); //随机线的起点x坐标是画布x坐标0位置，y坐标是画布高度的随机数
+            context.lineTo(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height)); //随机线的终点x坐标是画布宽度，y坐标是画布高度的随机数
+            context.lineWidth = 0.5; //随机线宽
+            context.strokeStyle = 'rgba(50,50,50,0.3)'; //随机线描边属性
+            context.stroke(); //描边，即起点描到终点
+        }
+        // 随机点(所谓画点其实就是画1px像素的线，方法不再赘述)
+        function drawDot(canvas, context) {
+            var px = Math.floor(Math.random() * canvas.width);
+            var py = Math.floor(Math.random() * canvas.height);
+            context.moveTo(px, py);
+            context.lineTo(px + 1, py + 1);
+            context.lineWidth = 0.2;
+            context.stroke();
+
+        }
+        // 绘制图片
+        function convertCanvasToImage(canvas) {
+            document.getElementById("verifyCanvas").style.display = "none";
+            var image = document.getElementById("code_img");
+            image.src = canvas.toDataURL("image/png");
+            return image;
+        }
+
+        // 点击图片刷新
+        document.getElementById('code_img').onclick = function () {
+            resetCode();
+        }
+
+        function resetCode() {
+            $('#verifyCanvas').remove();
+            $('#code_img').before('<canvas width="100" height="40" id="verifyCanvas"></canvas>')
+            verVal = drawCode();
+        }
+    </script>
 
 </body>
 
