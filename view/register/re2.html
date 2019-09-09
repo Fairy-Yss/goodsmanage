@@ -29,7 +29,7 @@
                     <form class="layui-form form-size" action="">
                         <div class="layui-form-item form-item">
                             <label class="layui-form-label">用户名</label>
-                            <div class="layui-input-block">
+                            <div class="layui-input-block nav">
                                 <input type="text" name="" placeholder="请输入用户名" class="layui-input input-size"
                                     id="username"><img
                                     style="width:19px; height:16px ;margin-top:10px;display: none;" />
@@ -38,8 +38,8 @@
                         </div>
                         <div class="layui-form-item form-item">
                             <label class="layui-form-label">请输入密码</label>
-                            <div class="layui-input-block">
-                                <input type="password" name="" placeholder="请输入密码" autocomplete="off"
+                            <div class="layui-input-block nav">
+                                <input type="password" name="" placeholder="请输入密码" 
                                     class="layui-input input-size" id="password"><img
                                     style="width:19px; height:16px ;margin-top:10px;display: none;" />
                                 <p class="remind"></p>
@@ -47,8 +47,8 @@
                         </div>
                         <div class="layui-form-item form-item">
                             <label class="layui-form-label">确认密码</label>
-                            <div class="layui-input-block">
-                                <input type="password" name="" placeholder="请再次确认密码" autocomplete="off"
+                            <div class="layui-input-block nav">
+                                <input type="password" name="" placeholder="请再次确认密码" 
                                     class="layui-input input-size" id="confirm"><img
                                     style="width:19px; height:16px ;margin-top:10px;display: none;" />
                                 <p class="remind"></p>
@@ -57,7 +57,7 @@
                         <div class="layui-form-item form-item">
                             <label class="layui-form-label">验证码</label>
                             <div class="layui-input-block">
-                                <input type="password" name="password" placeholder="请输入验证码" autocomplete="off"
+                                <input type="text" name="password" placeholder="请输入验证码" 
                                     class="layui-input" style="width: 210px" id="identy">
                                 <div id="verificationCode" class="verificationCode">
                                     <canvas width="100" height="40" id="verifyCanvas"></canvas>
@@ -67,7 +67,7 @@
                         </div>
                         <div class="layui-form-item form-item" pane="">
                             <div class="layui-input-block">
-                                <input id="check-btn" type="checkbox" lay-skin="primary" title="" checked="">
+                                <input id="check-btn" type="checkbox" lay-skin="primary" title="" lay-filter="check-btn">
                                 <span style="position:relative;top:10px;">我已同意并阅读
                                     <a href="#" style="color: rgb(0, 91, 209)">《Goods交易条款》</a>
                                     和<a href="#" style="color: rgb(0, 91, 209)">《Goods社区条款》</a>
@@ -97,22 +97,30 @@
             $("#username").keyup(function () {
                 var idName = $(this);
                 nameIdenty(idName, remind);
-            })
+            });
             //验证密码
             $("#password").keyup(function () {
                 var pswName = $(this);
                 pswIdenty(pswName, remind);
-            })
+            });
             //验证两次输入密码是否一致
             $("#confirm").keyup(function () {
                 var confirmName = $(this);
                 confirmIdenty(confirmName, remind);
-            })
+            });
             //验证条款
-            $("#check-btn").click(function () {
-                alert(1);
-            }
-            )
+            // layui.use('form', function () {
+            //     var form = layui.form;
+            //     form.on("checkbox(check-btn)", function (data) {
+            //         var a = data.elem.checked;
+            //         if(a){
+            //             alert(data.elem.checked);
+            //         }
+            //     })
+            // }
+            // );
+         
+
             //用户数据提交
             $("#sub-btn").click(function () {
                 var idName = $("#username");
@@ -122,7 +130,7 @@
                 pswIdenty(pswName, remind);
                 confirmIdenty(confirmName, remind);
             }
-            )
+            );
         })();
 
         function nameIdenty(idName, remind) {
@@ -246,6 +254,14 @@
             $('#code_img').before('<canvas width="100" height="40" id="verifyCanvas"></canvas>')
             verVal = drawCode();
         }
+        var form = layui.form;
+            form.on("checkbox(check-btn)", function (data) {
+                var a = data.elem.checked;
+                if (a) {
+                    alert(data.elem.checked);
+                }
+            }
+            );
     </script>
 
 </body>
