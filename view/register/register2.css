@@ -26,6 +26,7 @@
 .image-size{
     width: 150px;
     height: 90px;
+    float: left;
 }
 .btn-size{
     border-radius: 25px;
@@ -33,6 +34,12 @@
     width: 160px;
     height: 40px;
     margin-left: 110px;
+}
+.pic{
+    width:19px; 
+    height:16px ;
+    margin-top:10px;
+    display: none;
 }
 .remind{
     color: red;

@@ -7,7 +7,7 @@
     <title>GOODS-MANAGE</title>
     <!--引入layui 外部样式库，不用自己去写太多的布局样式，直接使用就好，将重心放到业务实现上面-->
     <link rel="stylesheet" href="../../lib/layui/css/layui.css">
-    <link href="./re2.css" rel="stylesheet" type="text/css">
+    <link href="./register2.css" rel="stylesheet" type="text/css">
 </head>
 
 <body class="layui-layout-body">
@@ -26,59 +26,59 @@
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <form class="layui-form form-size" action="">
+                    <form class="layui-form form-size" action="" id="registerform">
                         <div class="layui-form-item form-item">
                             <label class="layui-form-label">用户名</label>
                             <div class="layui-input-block nav">
                                 <input type="text" name="" placeholder="请输入用户名" class="layui-input input-size"
-                                    id="username"><img
-                                    style="width:19px; height:16px ;margin-top:10px;display: none;" />
+                                    id="username"><img class="pic" />
                                 <p class="remind"></p>
                             </div>
                         </div>
                         <div class="layui-form-item form-item">
                             <label class="layui-form-label">请输入密码</label>
                             <div class="layui-input-block nav">
-                                <input type="password" name="" placeholder="请输入密码" 
-                                    class="layui-input input-size" id="password"><img
-                                    style="width:19px; height:16px ;margin-top:10px;display: none;" />
+                                <input type="password" name="" placeholder="请输入密码" class="layui-input input-size"
+                                    id="password"><img class="pic" />
                                 <p class="remind"></p>
                             </div>
                         </div>
                         <div class="layui-form-item form-item">
                             <label class="layui-form-label">确认密码</label>
                             <div class="layui-input-block nav">
-                                <input type="password" name="" placeholder="请再次确认密码" 
-                                    class="layui-input input-size" id="confirm"><img
-                                    style="width:19px; height:16px ;margin-top:10px;display: none;" />
+                                <input type="password" name="" placeholder="请再次确认密码" class="layui-input input-size"
+                                    id="confirm"><img class="pic" />
                                 <p class="remind"></p>
                             </div>
                         </div>
                         <div class="layui-form-item form-item">
                             <label class="layui-form-label">验证码</label>
                             <div class="layui-input-block">
-                                <input type="text" name="password" placeholder="请输入验证码" 
-                                    class="layui-input" style="width: 210px" id="identy">
-                                <div id="verificationCode" class="verificationCode">
-                                    <canvas width="100" height="40" id="verifyCanvas"></canvas>
+                                <input type="text" name="password" placeholder="请输入验证码" class="layui-input"
+                                    style="width: 210px ;float: left;" id="identy" autocomplete="off">
+                                <div id="verificationCode" class="verificationCode"
+                                    style="margin-left: 20px; float: left;">
+                                    <canvas width="100" height="36" id="verifyCanvas"></canvas>
                                     <img id="code_img">
                                 </div>
+                                <p class="remind" style="margin-left: 4px;"></p>
                             </div>
                         </div>
                         <div class="layui-form-item form-item" pane="">
                             <div class="layui-input-block">
-                                <input id="check-btn" type="checkbox" lay-skin="primary" title="" lay-filter="check-btn">
+                                <input id="check-btn" type="checkbox" lay-skin="primary" title="" lay-filter="check-btn"
+                                    checked="">
                                 <span style="position:relative;top:10px;">我已同意并阅读
                                     <a href="#" style="color: rgb(0, 91, 209)">《Goods交易条款》</a>
                                     和<a href="#" style="color: rgb(0, 91, 209)">《Goods社区条款》</a>
                                 </span>
-                                <p class="remind"></p>
+                                <p class="remind" style="margin-left: 33px;"></p>
                             </div>
                         </div>
                         <div class="layui-form-item form-item">
                             <div class="layui-input-block">
                                 <button id="sub-btn" class="layui-btn btn-size" lay-submit=""
-                                    lay-filter="demo1">立即注册</button>
+                                    lay-filter="sub-btn">立即注册</button>
                             </div>
                         </div>
                     </form>
@@ -91,8 +91,8 @@
     <!--引入layui js文件-->
     <script src="../../lib/layui/layui.all.js"></script>
     <script>
+        var remind = $(".remind");
         (function () {
-            var remind = $(".remind");
             //验证用户名
             $("#username").keyup(function () {
                 var idName = $(this);
@@ -108,31 +108,39 @@
                 var confirmName = $(this);
                 confirmIdenty(confirmName, remind);
             });
-            //验证条款
-            // layui.use('form', function () {
-            //     var form = layui.form;
-            //     form.on("checkbox(check-btn)", function (data) {
-            //         var a = data.elem.checked;
-            //         if(a){
-            //             alert(data.elem.checked);
-            //         }
-            //     })
-            // }
-            // );
-         
-
-            //用户数据提交
-            $("#sub-btn").click(function () {
-                var idName = $("#username");
-                var pswName = $("#password");
-                var confirmName = $("#confirm");
-                nameIdenty(idName, remind);
-                pswIdenty(pswName, remind);
-                confirmIdenty(confirmName, remind);
-            }
-            );
+            //输入验证码提示
+            $("#identy").focus(function () {
+                var identy = $(this);
+                if (identy.text() == "") {
+                    remind.eq(3).text("请填写图片中的字符，不区分大小写");
+                }
+            });
         })();
-
+        //验证条款监听
+        var form = layui.form;
+        form.on("checkbox(check-btn)", function (data) {
+            var a = data.elem.checked;
+            if (!a) {
+                remind.eq(4).text("您必须同意Goods条款后，才能提交注册。");
+            } else {
+                remind.eq(4).text("");
+            }
+        }
+        );
+        //提交按钮监听
+        form.on("submit(sub-btn)", function (data) {
+            for (var i = 0; i < remind.length; i++) {
+                if (remind.eq(i) != "") {
+                    return false;
+                }
+            }
+            var resForm = $("#registerform");
+            resForm.prop("action", "....");
+            resForm.submit();
+            return true;
+        }
+        );
+        //用户名验证
         function nameIdenty(idName, remind) {
             if (idName.val().length != 0) {
                 var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
@@ -149,6 +157,7 @@
                 }
             }
         }
+        //密码验证
         function pswIdenty(pswName, remind) {
             if (pswName.val().length != 0) {
                 var uPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).*$/;
@@ -165,6 +174,7 @@
                 }
             }
         }
+        //确认密码验证
         function confirmIdenty(confirmName, remind) {
             if (confirmName.val().length != 0) {
                 confirmName.siblings(2).css({
@@ -254,14 +264,7 @@
             $('#code_img').before('<canvas width="100" height="40" id="verifyCanvas"></canvas>')
             verVal = drawCode();
         }
-        var form = layui.form;
-            form.on("checkbox(check-btn)", function (data) {
-                var a = data.elem.checked;
-                if (a) {
-                    alert(data.elem.checked);
-                }
-            }
-            );
+
     </script>
 
 </body>

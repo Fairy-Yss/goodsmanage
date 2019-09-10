@@ -5,28 +5,35 @@
 .main{
     width: 400px;
     height: 300px;
-    /*border: 1px solid red;*/
-    margin: 150px auto;
     text-align: center;
-    position: relative;
-    background-color: aqua;
+    position: absolute;
+    left: 800px;
+    top: 100px;
 }
 .main p{
     margin-top: 20px;
     color: aliceblue;
     font-size: 30px;
+    margin-top: 30px;
 }
-.main .username{
-    margin-top: 60px;
-    text-indent: -4em
- }
-.main .password{
-    margin-top: 14px;
-    text-indent: -3em
+
+.input-size{
+    border-radius: 30px;
+    margin-left: -55px;
+    margin-top: 30px;
+    padding-left: 30px;
 }
-.main button{
-    width: 100px;
-    background-color: aqua;
-    display: block;
-    margin: 20px auto;
+.btn-size{
+    border-radius: 30px;
+    height: 38px;
+    width: 280px;
+    margin-left: -110px;
+    margin-top: 20px;
+    background-color: rgb(0, 217, 255);
+}
+.nav{
+    position: absolute;
+    top: 10px;
+    left: -40px;
+    color: gray;
 }

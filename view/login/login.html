@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>登录页面</title>
-        <link href="./login.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <div class="main">
-            <img/>
-            <p>欢迎登录书籍管理系统</p>
-            <div class="username">用户名：<input type="text" placeholder="请输入用户名" name=""></div>
-            <div class="password">密码：<input type="text" placeholder="请输入密码" name=""></div>
-            <button>登录</button>
-            <button>注册</button>
-        </div>
-    </body>
-    <script src="../../lib/jquery/jquery.min.js"></script>
-    <script src="./login.js"></script>
-    <script>
-    </script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录页面</title>
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+    <link href="./login.css" rel="stylesheet" type="text/css">
+</head>
+
+<body style="width: 1000px;height: 657px; background:url(../image/loginbg.jpg) no-repeat; background-size: 100% 100%;">
+    <div class="main">
+        <img />
+        <p>欢迎登录书籍管理系统</p>
+        <form class="layui-form form-size" action="" id="registerform">
+            <div class="layui-form-item form-item">
+                <div class="layui-input-block">
+                    <i class="layui-icon nav">&#xe66f;</i>
+                    <input type="text" name="" placeholder="请输入用户名" class="layui-input input-size" id="username">
+                </div>
+            </div>
+            <div class="layui-form-item form-item">
+                <div class="layui-input-block">
+                    <i class="layui-icon nav">&#xe673;</i>
+                    <input type="password" name="" placeholder="请输入密码" class="layui-input input-size" id="password">
+                </div>
+            </div>
+            <div class="layui-form-item form-item">
+                <div class="layui-input-block">
+                    <button id="sub-btn" class="layui-btn btn-size" lay-submit="" lay-filter="sub-btn">登录</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script src="../../lib/jquery/jquery.min.js"></script>
+<!--引入layui js文件-->
+<script src="../../lib/layui/layui.all.js"></script>
+<script>
+
+</script>
+<script>
+</script>
 <html
