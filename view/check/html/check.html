@@ -9,6 +9,11 @@
 </head>
 <body>
   <table class="layui-hide" id="demoTable"></table>
+  <script type="text/html" id="barDemo">
+    <!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a> -->
+    <a class="layui-btn layui-btn-xs" lay-event="edit" data-type="auto" data-method="offset">审核</a>
+    <button class="layui-btn layui-btn-normal" data-type="auto" data-method="offset">居中弹出</button>
+  </script>
   <a href="javascrit:void(0)" onclick="gotoPage('home')">父子通信测试</a>
 
   <!--引入jqeury文件 因为layui.js依赖jquery因此需要在它之前引入，引入了之后，本页面的所有js文件也可以使用jquery语法了-->
@@ -16,6 +21,13 @@
   <!--引入layui js文件-->
   <script src="../../../lib/layui/layui.all.js" charset="utf-8"></script>
   <!--引入自己的脚本文件-->
-  <script src="../js/demo.js"></script>
+  <script src="../js/check.js"></script>
+  <script>
+      $('#layerDemo .layui-btn-normal').click(function(){
+          alert("wq");
+//         var layer = layui.layer;
+//   layer.msg('hello');
+  });
+  </script>
 </body>
 </html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>demo页面</title>
+  <link rel="stylesheet" href="../../../lib/layui/css/layui.css">
+</head>
+
+<body>
+  <form class="layui-form" action="">
+    <div class="layui-form-item">
+      <label class="layui-form-label">商品名称</label>
+      <div class="layui-input-block">
+        <input name="username" class="layui-input" type="text" placeholder="请输入商品名称" autocomplete="off"
+          lay-verify="title" style="width:400px;">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">商品类型</label>
+      <div class="layui-input-block" style="width: 300px;">
+        <select name="interest" lay-filter="aihao">
+          <option value=""></option>
+          <option value="0">文学、艺术</option>
+          <option value="1">科技类</option>
+          <option value="2">工具类</option>
+          <option value="3">自然科学</option>
+          <option value="4">摄影绘画</option>
+          <option value="4">医学、卫生</option>
+          <option value="4">政治、军事</option>
+          <option value="4">文史类</option>
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">商品价格</label>
+      <div class="layui-input-block">
+        <input name="username" class="layui-input" type="text" placeholder="请输入商品价格" autocomplete="off"
+          lay-verify="title" style="width: 200px;">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">商品货号</label>
+      <div class="layui-input-block">
+        <input name="username" class="layui-input" type="text" placeholder="请输入商品货号" autocomplete="off"
+          lay-verify="title" style="width: 400px;">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">商品库存</label>
+      <div class="layui-input-block">
+        <input name="username" class="layui-input" type="text" placeholder="请输入商品库存" autocomplete="off"
+          lay-verify="title" style="width: 200px;">
+      </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+      <label class="layui-form-label">商品介绍</label>
+      <div class="layui-input-block">
+        <textarea name="desc" class="layui-textarea" placeholder="请输入商品介绍内容" style="width: 800px;"></textarea>
+      </div>
+    </div>
+    <div class="layui-upload">
+      <button class="layui-btn" id="test2" type="button" style="margin-left: 40px;">上传商品图片</button> 
+      <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;margin-left: 40px;">
+          预览图：
+          <div class="layui-upload-list" id="demo2"></div>
+       </blockquote>
+    </div>
+
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button class="layui-btn" type="submit" lay-filter="demo1" lay-submit="" style="margin-left:200px;">立即提交</button>
+        <button class="layui-btn layui-btn-primary" type="reset" >重置</button>
+      </div>
+    </div>
+  </form>
+  <!--引入jqeury文件 因为layui.js依赖jquery因此需要在它之前引入，引入了之后，本页面的所有js文件也可以使用jquery语法了-->
+  <script src="../../../lib/jquery/jquery.min.js"></script>
+  <!--引入layui js文件-->
+  <script src="../../../lib/layui/layui.all.js"></script>
+  <script>
+      //多图片上传
+      var $ = layui.jquery
+  ,upload = layui.upload;
+  upload.render({
+    elem: '#test2'
+    ,url: '/upload/'
+    ,multiple: true
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img" style="width 100px;height:100px;">')
+      });
+    }
+    ,done: function(res){
+      if(res==0){
+        alert("上传成功");
+      }
+    }
+  });
+  </script>
+</body>
+
+</html>
