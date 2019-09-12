@@ -10,19 +10,47 @@
 </head>
 
 <body>
-    <div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
-        <blockquote class="layui-elem-quote layui-quote-nm">
-            Tips：为了更清晰演示，每触发下述一个例子之前，都会关闭所有已经演示的层
-        </blockquote>
-        <button class="layui-btn layui-btn-normal" data-type="auto" data-method="offset">居中弹出</button>
-    </div>
+    <form class="layui-form" action="" lay-filter="example">
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品名称</label>
+            <div class="layui-input-block" style="line-height: 36px;">
+                <p name="username" >毛泽东选集</p>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品审核</label>
+            <div class="layui-input-block">
+                <input name="sex" title="审核通过" type="radio" checked="" value="pass">
+                <input name="sex" title="审核不通过" type="radio" value="out">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">反馈详情</label>
+            <div class="layui-input-block">
+                <textarea name="desc" class="layui-textarea" placeholder="请输入内容" style="width: 300px;"></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button id="comfirm" class="layui-btn" type="submit" lay-filter="comfirm" lay-submit="">确定</button>
+                <button id="cancel" class="layui-btn" type="button" lay-filter="cancel" >取消</button>
+            </div>
+        </div>
+    </form>
 
     <!--引入jqeury文件 因为layui.js依赖jquery因此需要在它之前引入，引入了之后，本页面的所有js文件也可以使用jquery语法了-->
     <script src="../../../lib/jquery/jquery.min.js"></script>
     <!--引入layui js文件-->
     <script src="../../../lib/layui/layui.all.js" charset="utf-8"></script>
     <!--引入自己的脚本文件-->
-    <script src="../js/check.js"></script>
+    <script>
+      $('#cancel').click(function(){
+      // alert(1);
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.layer.close(index); //再执行关闭
+      })
+    </script>
 </body>
 
 </html>

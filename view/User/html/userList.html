@@ -5,16 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>demo页面</title>
+  <title>用户列表</title>
   <link rel="stylesheet" href="../../../lib/layui/css/layui.css">
 </head>
 
 <body>
   <table class="layui-hide" id="demoTable"></table>
+  <script type="text/html" id="staDemo">
+    <!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a> -->
+  <!-- <span>启用</span> -->
+      <input id="check-btn" name="close" type="checkbox" checked="" lay-skin="switch" lay-text="已启用|已禁用" lay-filter="check-btn">
+  </script>
   <script type="text/html" id="barDemo">
     <!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a> -->
   <a class="layui-btn layui-btn-xs">查看</a>
-  <a class="layui-btn layui-btn-xs layer">审核</a>
+  <a class="layui-btn layui-btn-xs layer">编辑</a>
+  <a class="layui-btn layui-btn-xs">删除</a>
   </script>
   <a href="javascrit:void(0)" onclick="gotoPage('home')">父子通信测试</a>
 
@@ -23,22 +29,8 @@
   <!--引入layui js文件-->
   <script src="../../../lib/layui/layui.all.js" charset="utf-8"></script>
   <!--引入自己的脚本文件-->
-  <script src="../js/check.js"></script>
+  <script src="../js/userList.js"></script>
   <script>
-    $('.layer').click(function () {
-      var layer = layui.layer;
-      layer.open({
-        type: 2,
-        content: './checkSite.html', //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
-        area: ['500px', '350px']
-      });
-    });
-
-    // $('#cancle').click(function(){
-    //    alert(1);
-    //     // var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-    //     // parent.layer.close(index); //再执行关闭
-    //   })
   </script>
 </body>
 
