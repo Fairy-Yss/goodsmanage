@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,12 @@
   <title>demo页面</title>
   <link rel="stylesheet" href="../../../lib/layui/css/layui.css">
 </head>
+
 <body>
   <table class="layui-hide" id="demoTable"></table>
   <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs layer" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs edit" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
   </script>
   <a href="javascrit:void(0)" onclick="gotoPage('home')">父子通信测试</a>
@@ -22,5 +24,23 @@
   <script src="../../../lib/layui/layui.all.js" charset="utf-8"></script>
   <!--引入自己的脚本文件-->
   <script src="../js/goodsList.js"></script>
+  <script>
+    $('.layer').click(function () {
+      var layer = layui.layer;
+      layer.open({
+        type: 2,
+        content: './goodsView.html', //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+        area: ['700px', '500px']
+      });
+    });
+    $(".edit").click(function () {
+        var id = $(".")
+        gotoPage("page_edit")
+    });
+    function gotoPage(page) {
+      routerutil.route({ path: page, params: {} });
+    }
+  </script>
 </body>
+
 </html>

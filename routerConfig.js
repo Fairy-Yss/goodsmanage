@@ -6,5 +6,6 @@ window.routers = [
   {path:'page_3',templateurl:'./view/check/html/check.html'},
   {path:'page_4',templateurl:'./view/check/html/check.html'},
   {path:'page_5',templateurl:'./view/User/html/userList.html'},
-  {path:'page_6',templateurl:'./view/User/html/userList.html'}
-];
+  {path:'page_6',templateurl:'./view/User/html/userList.html'},
+ 
+]
