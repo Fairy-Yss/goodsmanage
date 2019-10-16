@@ -14,7 +14,7 @@
     <div class="main">
         <img />
         <p>欢迎登录书籍管理系统</p>
-        <form class="layui-form form-size" action="" id="registerform">
+        <form class="layui-form form-size" action="" id="registerform" name="form1">
             <div class="layui-form-item form-item">
                 <div class="layui-input-block">
                     <i class="layui-icon nav">&#xe66f;</i>
@@ -29,7 +29,7 @@
             </div>
             <div class="layui-form-item form-item">
                 <div class="layui-input-block">
-                    <button id="sub-btn" class="layui-btn btn-size" lay-submit="" lay-filter="sub-btn">登录</button>
+                    <button type="submit" id="sub-btn" class="layui-btn btn-size" lay-submit="" lay-filter="sub-btn" onclick="login()">登录</button>
                 </div>
             </div>
         </form>
@@ -39,7 +39,9 @@
 <!--引入layui js文件-->
 <script src="../../lib/layui/layui.all.js"></script>
 <script>
-
+    function login(){
+        document.form1.submit();
+    }
 </script>
 <script>
 </script>

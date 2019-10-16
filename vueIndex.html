@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Vue 导航路由</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue-router/2.7.0/vue-router.min.js"></script>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            float: left;
+            width: 15%;
+            height: 500px;
+            /* border: 1px solid red; */
+            background-color: cornflowerblue;
+        }
+
+        li {
+
+            list-style-type: none;
+            /* border: 1px solid red; */
+            height: 25%;
+            width: 100%;
+            text-align: center;
+            line-height: 125px;
+        }
+
+        ul li:first-child {
+            margin-top: 0;
+        }
+
+        li a {
+            text-decoration: none;
+            color: white;
+            font-size: 2em;
+            /* border: 1px solid blue; */
+            padding: 40px 27px;
+        }
+
+        .router-outer {
+            width: 85%;
+            height: 500px;
+            /* border: 1px solid blue; */
+            float: left;
+            color: red;
+            text-align: center;
+            line-height: 500px;
+        }
+
+        .bgred {
+            background-color: red;
+        }
+    </style>
+    <div id="app">
+        <ul>
+            <li @click="change('color1')" :class="{'bgred':fff['color1']}">
+                <router-link to="/one">页面一</router-link>
+            </li>
+            <li @click="change('color2')" :class="{'bgred':fff['color2']}">
+                <router-link to="/two">页面二</router-link>
+            </li>
+            <li @click="change('color3')" :class="{'bgred':fff['color3']}">
+                <router-link to="/three">页面三</router-link>
+            </li>
+            <li @click="change('color4')" :class="{'bgred':fff['color4']}">
+                <router-link to="/four">页面四</router-link>
+            </li>
+        </ul>
+        <div class="router-outer">
+            <router-view style="font-size: 4em;"></router-view>
+        </div>
+    </div>
+    <script>
+
+        const One = { template: '<div>one</div>' }
+        const Two = { template: '<div>two</div>' }
+        const Three = { template: '<div>three</div>' }
+        const Four = { template: '<div>four</div>' }
+        const routes = [
+            { path: '/one', component: One },
+            { path: '/two', component: Two },
+            { path: '/three', component: Three },
+            { path: '/four', component: Four }
+        ]
+
+        const router = new VueRouter({
+            routes
+        })
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                fff: {
+                    'color1': true,
+                    'color2': false,
+                    'color3': false,
+                    'color4': false
+                }
+
+            },
+            methods: {
+                change: function (param) {
+                    //  console.log("dwd")
+                    const m = this.fff;
+                    for (var item in m) {
+                        m[item] = false;
+                    }
+                    this.fff[param] = true
+                }
+            },
+            router
+        })
+
+// 现在，应用已经启动了！
+    </script>
+
+    <!-- bug: rout-link的宽高和li宽高不一致。导致li背景颜色改变了 路由却没有切换 -->
+</body>
+
+</html>

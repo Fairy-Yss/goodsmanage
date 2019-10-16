@@ -26,7 +26,8 @@
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <form class="layui-form form-size" action="" id="registerform">
+                    <form class="layui-form form-size" action="" id="registerform" name="form1"
+                        onsubmit="return register()">
                         <div class="layui-form-item form-item">
                             <label class="layui-form-label">用户名</label>
                             <div class="layui-input-block nav">
@@ -77,8 +78,8 @@
                         </div>
                         <div class="layui-form-item form-item">
                             <div class="layui-input-block">
-                                <button id="sub-btn" class="layui-btn btn-size" lay-submit=""
-                                    lay-filter="sub-btn">立即注册</button>
+                                <button type="submit" id="sub-btn" class="layui-btn btn-size" lay-submit=""
+                                    lay-filter="sub-btn" onclick="register()" >立即注册</button>
                             </div>
                         </div>
                     </form>
@@ -92,7 +93,7 @@
     <script src="../../lib/layui/layui.all.js"></script>
     <script>
         var remind = $(".remind");
-        (function () {
+        (function yanZh() {
             //验证用户名
             $("#username").keyup(function () {
                 var idName = $(this);
@@ -109,12 +110,18 @@
                 confirmIdenty(confirmName, remind);
             });
             //输入验证码提示
-            $("#identy").focus(function () {
-                var identy = $(this);
-                if (identy.text() == "") {
-                    remind.eq(3).text("请填写图片中的字符，不区分大小写");
-                }
-            });
+            // $("#identy").focus(function () {
+            //     var identy = $(this);
+            //     if (identy.val() == "") {
+            //         remind.eq(3).text("请填写图片中的字符，不区分大小写");
+            //     }
+            // });
+            // $("#identy").keyup(function () {     
+            //     var identy = $(this);
+            //     if (identy.val() == ""){
+            //         remind.eq(3).text("");
+            //     }
+            // });
         })();
         //验证条款监听
         var form = layui.form;
@@ -142,7 +149,7 @@
         );
         //用户名验证
         function nameIdenty(idName, remind) {
-            if (idName.val().length != 0) {
+            // if (idName.val().length != 0) {
                 var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
                 var result = uPattern.test(idName.val());
                 idName.siblings(0).css({
@@ -155,11 +162,11 @@
                     idName.siblings(0).attr("src", "../image/true.jpg");
                     remind.eq(0).text("");
                 }
-            }
+            // }
         }
         //密码验证
         function pswIdenty(pswName, remind) {
-            if (pswName.val().length != 0) {
+            // if (pswName.val().length != 0) {
                 var uPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).*$/;
                 var result = uPattern.test(pswName.val());
                 pswName.siblings(1).css({
@@ -172,22 +179,26 @@
                     pswName.siblings(1).attr("src", "../image/true.jpg");
                     remind.eq(1).text("")
                 }
-            }
+            // }
         }
         //确认密码验证
         function confirmIdenty(confirmName, remind) {
-            if (confirmName.val().length != 0) {
+            // if (confirmName.val().length != 0) {
                 confirmName.siblings(2).css({
                     "display": "inline-block"
                 });
-                if (confirmName.val() != $("#password").val()) {
+                if($("#password").val()==""){
+                    confirmName.siblings(1).css({
+                    "display": "none"
+                });
+                } else if (confirmName.val() != $("#password").val()) {
                     confirmName.siblings(2).attr("src", "../image/false.jpg");
                     remind.eq(2).text("*两次输入密码不一致，请重新输入").css("color", "red");
                 } else {
                     confirmName.siblings(2).attr("src", "../image/true.jpg");
                     remind.eq(2).text("")
                 }
-            }
+            // }
         }
         //验证码
         var nums = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
@@ -265,6 +276,31 @@
             verVal = drawCode();
         }
 
+        //提交表单
+        function register() {
+            // alert("121")
+            var idName = $("#username");
+            nameIdenty(idName, remind);
+            var pswName = $("#password");
+            pswIdenty(pswName, remind);
+            var confirmName = $("#confirm");
+            confirmIdenty(confirmName, remind);
+            var identy = $("#identy");
+            if (identy.val()=="") {
+                remind.eq(3).text("请填写图片中的字符，不区分大小写");
+            }else{
+                remind.eq(3).text("");
+            }
+            for (var a = 0; a < remind.length; a++) {
+                var de=remind.eq(a).text();
+                if (remind.eq(a).text() != "") {
+                    alert("请完善信息！")
+                    return false;
+                }
+
+            }
+            document.form1.submit(); 
+        }
     </script>
 
 </body>

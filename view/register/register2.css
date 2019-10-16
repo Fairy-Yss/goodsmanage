@@ -27,6 +27,8 @@
     width: 150px;
     height: 90px;
     float: left;
+    border-radius: 5px;
+    z-index: 2;
 }
 .btn-size{
     border-radius: 25px;
